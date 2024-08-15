@@ -1,3 +1,5 @@
+import AddToBag from "@/app/components/addtobag";
+import CheckoutNow from "@/app/components/checkout";
 import ImageGallery from "@/app/components/imageGallery";
 import { fullProduct } from "@/app/interface";
 import { Button } from "@/components/ui/button";
@@ -13,6 +15,7 @@ async function getData(slug: string) {
         description,
          "slug":slug.current,
          "categoryName": category->name,
+         price_id
     }`;
     const data = await client.fetch(query);
     return data;
@@ -57,8 +60,25 @@ export default async function ProductPage({ params }: { params: { slug: string }
                             <Truck className="w-6 h-6" />
                             <span className="text-sm">2-4 Day Shipping</span>
                         </div>
-                        <div>
-                            
+                        <div className="flex gap-3">
+                            <AddToBag
+                                currency="USD"
+                                description={data.description}
+                                image={data.images[0]}
+                                name={data.name}
+                                price={data.price}
+                                key={data._id}
+                                price_id={data.price_id}
+                            />
+                            <CheckoutNow
+                                currency="USD"
+                                description={data.description}
+                                image={data.images[0]}
+                                name={data.name}
+                                price={data.price}
+                                key={data._id}
+                                price_id={data.price_id}
+                            />
                         </div>
                         <p className="mt-12 text-base text-gray-500 tracking-wide">
                             {data.description}

@@ -7,7 +7,7 @@ export interface simplifiedProduct{
     name: string;
 }
 
-export interface fullProduct{
+export interface fullProduct {
     _id: string;
     images: any;
     price: number;
@@ -15,4 +15,5 @@ export interface fullProduct{
     categoryName: string;
     name: string;
     description: string;
-}
+    price_id: string;
+  }
